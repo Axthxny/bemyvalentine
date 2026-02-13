@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Valentine's Day Renny! 💕</title>
+    <title>Happy Valentine's Day! 💕</title>
     <style>
         * {
             margin: 0;
@@ -149,50 +149,40 @@
         }
 
         .love-reasons li {
-            background: #ffe6f0;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #e91e63;
-            animation: slideInLeft 0.5s ease-out;
-            animation-fill-mode: both;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .question-box {
-            margin: 30px 0;
-        }
-
-        .yes-btn {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .no-btn {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            position: relative;
-        }
-
-        .final-message {
-            font-size: 1.5em;
-            color: #e91e63;
-            font-weight: bold;
-            margin: 20px 0;
-            animation: fadeIn 1s;
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+            animation: fadeIn 0.5s ease-in;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        .question-box {
+            margin: 20px 0;
+        }
+
+        .no-btn {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .final-message {
+            font-size: 2em;
+            color: #e91e63;
+            margin: 20px 0;
+            animation: celebrate 1s ease-in-out;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2) rotate(-5deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+            75% { transform: scale(1.2) rotate(-5deg); }
         }
 
         .photo-section {
@@ -238,6 +228,12 @@
                 font-size: 1em;
                 padding: 12px 24px;
             }
+            .valentine-photo {
+                width: 90%;
+            }
+            .photo-caption {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -246,11 +242,11 @@
     
     <div class="container">
         <div class="card">
-            <h1>Happy Valentine's Day renny! 💕</h1>
+            <h1>Happy Valentine's Day! 💕</h1>
             
             <div class="photo-section">
                 <img src="516.png" alt="Our special moment" class="valentine-photo">
-                <p class="photo-caption">My one and only, always making me laugh :) </p>
+                <p class="photo-caption">My favorite teammate, always healing my heart 💕</p>
             </div>
             
             <div class="big-heart" onclick="createHeartExplosion()">❤️</div>
@@ -270,11 +266,11 @@
                 <h2 style="color: #e91e63; margin: 20px 0;">Reasons I Love You:</h2>
                 <ul class="love-reasons">
                     <li>💖 You never fail to make me smile, no matter what</li>
-                    <li>🎮 All our moments together, especially when i say dumb things and it makes us giggle</li>
+                    <li>🎮 All our gaming moments together, especially when you main Mercy and keep me alive in Overwatch</li>
                     <li>✨ You've helped me become a better person than I ever thought I could be</li>
-                    <li>💫 The amazing memories we create, whether we're together in person or online make every holiday worth waiting for</li>
+                    <li>💫 The amazing memories we create, whether we're together in person or online</li>
                     <li>🌟 How you bring out the best in me every single day</li>
-                    <li>💝 Simply being you - becoming the strong woman you are today im proud of you.</li>
+                    <li>💝 Simply being you - my healer, my teammate, my everything</li>
                 </ul>
             </div>
 
@@ -282,16 +278,16 @@
                 <div class="question-box">
                     <h2 style="color: #e91e63; margin: 20px 0;">Will you be my Valentine? 💕</h2>
                     <button class="btn yes-btn" onclick="handleYes()">Yes! 💕</button>
-                    <button class="btn no-btn" id="noBtn" onmouseover="moveButton()" onclick="handleNo()">No</button>
+                    <button class="btn no-btn" id="noBtn" onmouseover="moveButton()" ontouchstart="moveButton()" onclick="handleNo()">No</button>
                 </div>
             </div>
 
             <div id="finalMessage" class="hidden">
                 <div class="final-message">
-                    Yay! now lets go to dinner beautiful! 🎉💕
+                    Yay! You've made me the happiest person ever! 🎉💕
                 </div>
                 <div class="message">
-                    I love you more than you could ever know! ❤️
+                    I love you more than words can say! ❤️
                 </div>
             </div>
         </div>
@@ -360,41 +356,39 @@
             document.getElementById('finalMessage').classList.remove('hidden');
             createHeartExplosion();
             
-            // Create confetti effect
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => createHeart(), i * 30);
-            }
-            
-            // Redirect to Discord after a short delay to show the message
+            // Redirect to Discord after celebration
             setTimeout(() => {
                 window.location.href = 'https://discord.gg/78rbM9dQ';
             }, 2000);
         }
 
-        // Handle No response (it won't be easy to click!)
+        // Handle No response (just in case they manage to click it!)
         function handleNo() {
-            alert("The button says no, but I know you mean yes! 😄💕");
+            alert("The button ran away! I guess that means yes! 😄💕");
+            handleYes();
         }
 
-        // Countdown to Valentine's Day or days together
+        // Valentine's Day countdown
         function updateCountdown() {
-            const valentine = new Date('2026-02-14');
+            const valentine = new Date('2026-02-14T00:00:00');
             const now = new Date();
             const diff = valentine - now;
             
             if (diff > 0) {
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
                 document.getElementById('countdown').innerHTML = 
-                    `Valentine's Day countdown: ${days} days ${hours} hours 💕`;
+                    `Valentine's Day: ${days}d ${hours}h ${minutes}m ${seconds}s`;
             } else {
-                document.getElementById('countdown').innerHTML = 
-                    `Happy Valentine's Day! 🎉💕`;
+                document.getElementById('countdown').innerHTML = "Happy Valentine's Day! 💕";
             }
         }
 
+        setInterval(updateCountdown, 1000);
         updateCountdown();
-        setInterval(updateCountdown, 3600000); // Update every hour
     </script>
 </body>
 </html>
