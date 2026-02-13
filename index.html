@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day! 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up 4s ease-in infinite;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .big-heart {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .big-heart:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        .message {
+            font-size: 1.3em;
+            color: #333;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .button-container {
+            margin: 30px 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .love-reasons {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        .love-reasons li {
+            background: #ffe6f0;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #e91e63;
+            animation: slideInLeft 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .question-box {
+            margin: 30px 0;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            position: relative;
+        }
+
+        .final-message {
+            font-size: 1.5em;
+            color: #e91e63;
+            font-weight: bold;
+            margin: 20px 0;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .photo-section {
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .valentine-photo {
+            max-width: 100%;
+            width: 600px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+            border: 5px solid #fff;
+            transition: transform 0.3s;
+        }
+
+        .valentine-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-caption {
+            font-size: 1.2em;
+            color: #e91e63;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .countdown {
+            font-size: 1.2em;
+            color: #666;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .message {
+                font-size: 1.1em;
+            }
+            .btn {
+                font-size: 1em;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-container" id="heartContainer"></div>
+    
+    <div class="container">
+        <div class="card">
+            <h1>Happy Valentine's Day! 💕</h1>
+            
+            <div class="photo-section">
+                <img src="516.png" alt="Our special moment" class="valentine-photo">
+                <p class="photo-caption">My favorite teammate, always healing my heart 💕</p>
+            </div>
+            
+            <div class="big-heart" onclick="createHeartExplosion()">❤️</div>
+            
+            <div class="message">
+                To the most amazing person in my life...
+            </div>
+
+            <div class="countdown" id="countdown"></div>
+
+            <div class="button-container">
+                <button class="btn" onclick="showReasons()">Why I Love You</button>
+                <button class="btn" onclick="showQuestion()">I Have a Question...</button>
+            </div>
+
+            <div id="reasonsSection" class="hidden">
+                <h2 style="color: #e91e63; margin: 20px 0;">Reasons I Love You:</h2>
+                <ul class="love-reasons">
+                    <li>💖 You never fail to make me smile, no matter what</li>
+                    <li>🎮 All our gaming moments together, especially when you main Mercy and keep me alive in Overwatch</li>
+                    <li>✨ You've helped me become a better person than I ever thought I could be</li>
+                    <li>💫 The amazing memories we create, whether we're together in person or online</li>
+                    <li>🌟 How you bring out the best in me every single day</li>
+                    <li>💝 Simply being you - my healer, my teammate, my everything</li>
+                </ul>
+            </div>
+
+            <div id="questionSection" class="hidden">
+                <div class="question-box">
+                    <h2 style="color: #e91e63; margin: 20px 0;">Will you be my Valentine? 💕</h2>
+                    <button class="btn yes-btn" onclick="handleYes()">Yes! 💕</button>
+                    <button class="btn no-btn" id="noBtn" onmouseover="moveButton()" onclick="handleNo()">No</button>
+                </div>
+            </div>
+
+            <div id="finalMessage" class="hidden">
+                <div class="final-message">
+                    Yay! You've made me the happiest person ever! 🎉💕
+                </div>
+                <div class="message">
+                    I love you more than words can say! ❤️
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('heartContainer').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Heart explosion effect
+        function createHeartExplosion() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createHeart(), i * 50);
+            }
+        }
+
+        // Show reasons section
+        function showReasons() {
+            const section = document.getElementById('reasonsSection');
+            section.classList.toggle('hidden');
+            
+            if (!section.classList.contains('hidden')) {
+                const items = section.querySelectorAll('li');
+                items.forEach((item, index) => {
+                    item.style.animationDelay = (index * 0.1) + 's';
+                });
+            }
+        }
+
+        // Show question section
+        function showQuestion() {
+            document.getElementById('questionSection').classList.toggle('hidden');
+        }
+
+        // Move "No" button away
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            const maxX = window.innerWidth - 200;
+            const maxY = window.innerHeight - 100;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            btn.style.position = 'fixed';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+
+        // Handle Yes response
+        function handleYes() {
+            document.getElementById('questionSection').classList.add('hidden');
+            document.getElementById('finalMessage').classList.remove('hidden');
+            createHeartExplosion();
+            
+            // Create confetti effect
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => createHeart(), i * 30);
+            }
+            
+            // Redirect to Discord after a short delay to show the message
+            setTimeout(() => {
+                window.location.href = 'https://discord.gg/78rbM9dQ';
+            }, 2000);
+        }
+
+        // Handle No response (it won't be easy to click!)
+        function handleNo() {
+            alert("The button says no, but I know you mean yes! 😄💕");
+        }
+
+        // Countdown to Valentine's Day or days together
+        function updateCountdown() {
+            const valentine = new Date('2026-02-14');
+            const now = new Date();
+            const diff = valentine - now;
+            
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('countdown').innerHTML = 
+                    `Valentine's Day countdown: ${days} days ${hours} hours 💕`;
+            } else {
+                document.getElementById('countdown').innerHTML = 
+                    `Happy Valentine's Day! 🎉💕`;
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 3600000); // Update every hour
+    </script>
+</body>
+</html>
